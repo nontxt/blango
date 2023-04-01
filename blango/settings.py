@@ -58,6 +58,7 @@ class Dev(Configuration):
       'django.contrib.staticfiles',
       'rest_framework',
       'rest_framework.authtoken',
+      'drf_yasg',
       'crispy_forms',
       'crispy_bootstrap5',
       'debug_toolbar',
@@ -218,7 +219,16 @@ class Dev(Configuration):
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly"
     ],
-}
+    }
+
+  SWAGGER_SETTINGS = {
+      "SECURITY_DEFINITIONS": {
+          "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+        "Basic": {"type": "basic"},
+        }
+    }
+
+
 
 class Prod(Dev):
   DEBUG = False
